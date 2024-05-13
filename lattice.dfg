@@ -17,7 +17,7 @@ end_of_list.
 
 list_of_formulae(axioms). % axioms for lattices
 
-  formula(forall([x,y,z],equal((j(x,y),z),j(x,j(y,z))))). % name({*null*})
+  formula(forall([x,y,z],equal(j(j(x,y),z),j(x,j(y,z))))). % name({*null*})
   formula(forall([x,y,z],equal(m(m(x,y),z),m(x,m(y,z))))). % name({*null*})
   formula(forall([x,y],equal(j(x,y),j(y,x)))). % name({*null*})
   formula(forall([x,y],equal(m(x,y),m(y,x)))). % name({*null*})
