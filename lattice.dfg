@@ -1,0 +1,44 @@
+% Prove that if we assume the first distributive law in a distributive lattice,
+% the dual is a simple conseguence.
+
+begin_problem(LatticeProperty).
+
+list_of_descriptions.
+name({*LatticeProperty*}).
+author({*GG*}).
+status(unknown).
+description({*Problem*}).
+date({*null*}).
+end_of_list.
+
+list_of_symbols.
+  functions[(j,2),(m,2)]. %let us define the two binary functions in the lattice.
+end_of_list.
+
+list_of_formulae(axioms). % axioms for lattices
+
+  formula(forall([x,y,z],equal((j(x,y),z),j(x,j(y,z))))). % name({*null*})
+  formula(forall([x,y,z],equal(m(m(x,y),z),m(x,m(y,z))))). % name({*null*})
+  formula(forall([x,y],equal(j(x,y),j(y,x)))). % name({*null*})
+  formula(forall([x,y],equal(m(x,y),m(y,x)))). % name({*null*})
+  formula(forall([x,y],equal(m(x,j(x,y)),x))). % name({*null*})
+  formula(forall([x,y],equal(j(x,m(x,y)),x))). % name({*null*})
+
+  % distributive formula
+  formula(forall([x,y,z],equal(m(x,j(y,z)),j(m(x,y),m(x,z))))).
+
+end_of_list.
+
+
+list_of_formulae(conjectures).
+  formula(forall([x,y,z],equal(j(x,m(y,z)),m(j(x,y),j(x,z))))).
+end_of_list.
+
+list_of_settings(SPASS).
+{*
+set_flag(DocProof,1).
+*}
+end_of_list.
+
+
+end_problem.
