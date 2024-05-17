@@ -1,0 +1,61 @@
+% Prove that a boolean ring has characteristic 2 and it is commutative
+
+begin_problem(boolean_ring).
+
+list_of_descriptions.
+name({*boolean_ring*}).
+author({*GiacomoGatti*}).
+status(unknown).
+description({*Problem*}).
+date({*null*}).
+end_of_list.
+
+list_of_symbols.
+
+  % definition of the following functions:
+  % (m,2) multiplication
+  % (p,2) addition
+  % (e,0) neutral element of the multiplication
+  % (Z,0) neutral element of the addition
+  % (im,1) additive inverse of an element
+  functions[(m,2),(p,2),(U,0),(Z,0),(im,1)].
+
+end_of_list.
+
+list_of_formulae(axioms).
+
+  % axioms for abelian additive group
+  formula(forall([x],equal(p(Z,x),p(x,Z)))).
+  formula(forall([x],equal(p(Z,x),x))).
+  formula(forall([x,y],equal(p(x,y),p(y,x)))).
+  formula(forall([x,y,z],equal(p(p(x,y),z),p(x,p(y,z))))).
+  formula(forall([x],equal(p(x,im(x)),Z))).
+
+  $axioms for multiplicative semigroup
+  formula(forall([x,y,z],equal(m(m(x,y),z),m(x,m(y,z))))).
+  formula(forall([x,y,z],equal(m(x,p(y,z)),p(m(x,y),m(x,z))))).
+  formula(forall([x,y,z],equal(m(p(x,y),z),p(m(x,z),m(y,z))))).
+
+  % unital ring
+  formula(forall([x],equal(m(U,x),m(x,U)))).
+  formula(forall([x],equal(m(U,x),x))).
+
+  % boolean condition
+  formula(forall([x],equal(m(x,x),x))).
+
+end_of_list.
+
+list_of_formulae(conjectures).
+
+    formula(forall([x,y],equal(m(x,y),m(y,x)))). % commutative ring
+    formula(forall([x],equal(p(x,x),Z))).        % characteristic 2
+
+end_of_list.
+
+list_of_settings(SPASS).
+{*
+set_flag(DocProof,1).
+*}
+end_of_list.
+
+end_problem.
