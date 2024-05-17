@@ -24,6 +24,8 @@ end_of_list.
 
 list_of_formulae(axioms).
 
+  % ring axioms:
+
   % axioms for abelian additive group
   formula(forall([x],equal(p(Z,x),p(x,Z)))).
   formula(forall([x],equal(p(Z,x),x))).
@@ -31,7 +33,7 @@ list_of_formulae(axioms).
   formula(forall([x,y,z],equal(p(p(x,y),z),p(x,p(y,z))))).
   formula(forall([x],equal(p(x,im(x)),Z))).
 
-  $axioms for multiplicative semigroup
+  % axioms for multiplicative semigroup
   formula(forall([x,y,z],equal(m(m(x,y),z),m(x,m(y,z))))).
   formula(forall([x,y,z],equal(m(x,p(y,z)),p(m(x,y),m(x,z))))).
   formula(forall([x,y,z],equal(m(p(x,y),z),p(m(x,z),m(y,z))))).
