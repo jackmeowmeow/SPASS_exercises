@@ -1,0 +1,90 @@
+% Prove that the following theorem holds: there is a (cathegorical) bijection bewtween Boolean Algebra and Boolean Rings.
+% This file proves the Boolean Ring --> Boolean Algebra. See boolean_alg_in_boolean_ring.dfg for the second part.
+begin_problem(Problem).
+
+list_of_descriptions.
+name({*Consegna_27_05_24_algebra_into_ring*}).
+author({*Giacomo Gatti*}).
+status(unknown).
+description({**}).
+date({*NULL*}).
+end_of_list.
+
+list_of_symbols.
+
+% p = addition
+% m = multiplication
+% im  = minus
+% 1 = neutral element for the multiplication
+% 0 = zero, neutral element for the addition
+
+% union
+% intersection
+% c = complement
+
+functions[(p,2),(m,2), (minus,1),(union,2),(intersec,2),(c,1),(1,0),(0,0)].
+
+end_of_list.
+
+list_of_formulae(axioms).
+
+  % ***ALGEBRA Axioms***
+  formula(forall([x,y,z],equal(union(x,union(y,z)),union(union(x,y),z)))). % union associativity
+  formula(forall([x,y,z],equal(intersec(x,intersec(y,z)),intersec(intersec(x,y),z)))). % intersection associativity
+  formula(forall([x,y],equal(union(x,y),union(y,x)))). % union commutativity
+  formula(forall([x,y],equal(intersec(x,y),intersec(y,x)))). %intersection commutativity
+  formula(forall([x,y], equal(union(x,intersec(x,y)),x))). % absorption1
+  formula(forall([x,y],equal(intersec(x,union(x,y)),x))). % absorption2
+  formula(forall([x],equal(union(x,0),x))). %identity of union
+  formula(forall([x],equal(intersec(x,1),x))). %identity of intersection
+  formula(forall([x,y,z],equal(union(x,intersec(y,z)),intersec(union(x,y),union(x,z))))). % distributivity
+  formula(forall([x,y,z],equal(intersec(x,union(y,z)),union(intersec(x,y),intersec(x,z))))). % distributivity
+  formula(forall([x],equal(union(x,c(x)),1))). %complements
+  formula(forall([x],equal(intersec(x,c(x)),0))).
+  formula(forall([x],equal(union(x,1),1))).
+  formula(forall([x],equal(intersec(x,0),0))).
+
+  % ***BOOLEAN RING Equivalences***
+
+  % plus
+  formula(forall([x,y],equal(p(x,y),union(intersec(x,c(y)),intersec(c(x),y))))).
+
+  % minus
+  formula(forall([x],equal(minus(x),x))).
+
+  % multiplication
+  formula(forall([x,y],equal(m(x,y),intersec(x,y)))).
+
+end_of_list.
+
+list_of_formulae(conjectures).
+
+% axioms for abelian additive group
+%formula(forall([x],equal(p(0,x),p(x,0)))).                     % additive neutral element property
+%formula(forall([x],equal(p(0,x),x))).
+%formula(forall([x,y],equal(p(x,y),p(y,x)))).                   % commutatitvity of the addition
+%formula(forall([x,y,z],equal(p(p(x,y),z),p(x,p(y,z))))).       % distributivity of the addition
+%formula(forall([x],equal(p(x,minus(x)),0))).                   % additive inverse of an element
+
+% axioms for multiplicative semigroup
+%formula(forall([x,y,z],equal(m(m(x,y),z),m(x,m(y,z))))).       % multiplication associativity
+%formula(forall([x,y,z],equal(m(x,p(y,z)),p(m(x,y),m(x,z))))).  % distributivity 1
+%formula(forall([x,y,z],equal(m(p(x,y),z),p(m(x,z),m(y,z))))).  % distributivity 2
+
+% unital ring conditions
+%formula(forall([x],equal(m(1,x),m(x,1)))).
+%formula(forall([x],equal(m(1,x),x))).
+
+% boolean condition
+%formula(forall([x],equal(m(x,x),x))).
+
+end_of_list.
+
+list_of_settings(SPASS).
+{*
+set_precedence(p,minus,m,c,union,intersec,1,0).
+set_flag(Ordering,1).
+*}
+end_of_list.
+
+end_problem.
